@@ -5,6 +5,7 @@ import (
 	"basicCRUD/infrastructure"
 	"basicCRUD/migrations"
 	"basicCRUD/routes"
+	"basicCRUD/seed"
 	"log"
 	"os"
 
@@ -24,6 +25,8 @@ func main() {
 	defer config.CloseDB()
 
 	migrations.Migrate()
+	// seed data
+	seed.Load()
 
 	app := fiber.New()
 

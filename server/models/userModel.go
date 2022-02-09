@@ -10,6 +10,8 @@ type Users struct {
 	Surname  string `gorm:"not null"`
 	Email    string `gorm:"unique;not null"`
 	Image    string `gorm:"not null"`
+	RoleID   uint
+	Roles    Roles `gorm:"foreignKey:RoleID"`
 }
 
 /*

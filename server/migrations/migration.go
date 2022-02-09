@@ -20,6 +20,7 @@ func Migrate() {
 		[]*gormigrate.Migration{
 			m1644326661CreateUsersTable(),
 			m1644374260CreateRolesTable(),
+			m1644392842AddRoleIdToUsers(),
 		},
 	)
 
