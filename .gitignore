@@ -1,0 +1,3 @@
+server/tmp/main
+server/tmp/build-errors.log
+server/uploads/users/*

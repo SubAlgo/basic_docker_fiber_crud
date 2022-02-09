@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:13.5
+    container_name: postgres
+    restart: always
+    #env_file:
+    #  - database.env
+    environment:
+      - POSTGRES_USER=pg
+      - POSTGRES_PASSWORD=test1234
+      - POSTGRES_DB=users
+    ports:
+      - 9100:5432
+    volumes:
+      - db:/var/lib/postgresql/data/
+    networks:
+      - fullstack
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile/go-dev.Dockerfile
+    container_name: go
+    depends_on:
+      - postgres
+    volumes:
+      - './server:/app'
+    working_dir: /app
+    ports:
+      - 9000:9000
+    command: go run main.go
+    networks:
+      - fullstack
+
+volumes:
+  db:
+  
+# Networks to be created to facilitate communication between containers
+networks:
+  fullstack:
+    driver: bridge
